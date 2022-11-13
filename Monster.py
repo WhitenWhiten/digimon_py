@@ -100,7 +100,7 @@ class Monster(object):
             self.__hp = 0
 
     def eat(self) -> None:
-        self.update_hp(self.get_hp() + 1)
+        self.update_hp(self.get_max_hp())
         self.__last_fed_time_stamp = int(arrow.utcnow().timestamp())
 
     def starve(self) -> None:

@@ -1,1 +1,44 @@
-{"1368846568": {"id": 1, "birthday": "2022-11-13T06:02:50.916354+00:00", "nickname": "", "last_fed": 1668319370, "last_care": 1668319370, "hp": 11, "max_hp": 11, "min_dmg": 0, "max_dmg": 3, "wins": 0, "losses": 0, "owner": "1368846568"}, "a": {"id": 6, "birthday": "2022-11-13T08:07:35.195045+00:00", "nickname": "", "last_fed": 1668326855, "last_care": 1668326855, "hp": 12, "max_hp": 12, "min_dmg": 2, "max_dmg": 5, "wins": 0, "losses": 0, "owner": "a"}, "b": {"id": 3, "birthday": "2022-11-13T08:07:36.783546+00:00", "nickname": "", "last_fed": 1668326856, "last_care": 1668326856, "hp": 12, "max_hp": 12, "min_dmg": 0, "max_dmg": 3, "wins": 0, "losses": 0, "owner": "b"}}
+{
+    "1368846568": {
+        "id": 1,
+        "birthday": "2022-11-13T06:02:50.916354+00:00",
+        "nickname": "",
+        "last_fed": 1668319370,
+        "last_care": 1668319370,
+        "hp": 11,
+        "max_hp": 11,
+        "min_dmg": 0,
+        "max_dmg": 3,
+        "wins": 0,
+        "losses": 0,
+        "owner": "1368846568"
+    },
+    "a": {
+        "id": 54,
+        "birthday": "2022-11-13T08:07:35.195045+00:00",
+        "nickname": "",
+        "last_fed": 1668326855,
+        "last_care": 1668326855,
+        "hp": 89,
+        "max_hp": 89,
+        "min_dmg": 10,
+        "max_dmg": 20,
+        "wins": 0,
+        "losses": 0,
+        "owner": "a"
+    },
+    "b": {
+        "id": 58,
+        "birthday": "2022-11-13T08:07:36.783546+00:00",
+        "nickname": "",
+        "last_fed": 1668326856,
+        "last_care": 1668326856,
+        "hp": 74,
+        "max_hp": 78,
+        "min_dmg": 13,
+        "max_dmg": 22,
+        "wins": 0,
+        "losses": 0,
+        "owner": "b"
+    }
+}

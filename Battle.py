@@ -27,7 +27,7 @@ def register_battle(id1: str, id2: str) -> int:
         return -1
     elif (not is_id_registered(id1)) or (not is_id_registered(id2)):    # not registered
         return -1
-    elif (get_Monster_by_id(id1).get_hp() == 0) or (get_Monster_by_id(id2).get_hp == 0):    # no hp
+    elif (get_Monster_by_id(id1).get_hp() == 0) or (get_Monster_by_id(id2).get_hp() == 0):    # no hp
         return -1   
     else:
         in_battle.add(id1)
@@ -79,4 +79,6 @@ def generate_process(battle_id) -> str:
     winner.evolve()
     loser.evolve()
     clean_battle_field(battle_id)
+    
+    winner.get_concreate_digimon().get_colorful().show()
     return process

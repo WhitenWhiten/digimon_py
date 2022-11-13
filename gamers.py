@@ -71,7 +71,7 @@ def save_gamers() -> None:
         tosave[gamer] = monster_to_dict(gamers[gamer])
     lock.release()
     with open(save_path, 'w',encoding='utf-8') as save_file:
-        json.dump(tosave, save_file)
+        json.dump(tosave, save_file, indent=4, separators=(',', ': '), ensure_ascii=False)
 
 
 def random_monster(monster_owner: str) -> Monster:
