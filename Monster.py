@@ -1,7 +1,9 @@
 # Monster class Converted from java version
 from Digimon_concreate import *
 import arrow
+import random
 
+random.seed()
 
 class Monster(object):
     __nickname: str = ''
@@ -33,7 +35,7 @@ class Monster(object):
         self.__losses = losses
         self.__owner = owner
 
-    def get_digimon_concreate(self) -> Digimon:
+    def get_concreate_digimon(self) -> Digimon:
         return digimons[self.__id]
     
     def get_id(self) -> int:
@@ -108,7 +110,10 @@ class Monster(object):
         self.__wins += 1
 
     def defeated(self) -> None:
-        self.__losses -= 1
+        self.__losses += 1
+        
+    def can_fight(self) -> bool:
+        return self.get_hp != 0
         
     def can_evolve(self) -> bool:
         if self.get_days_old() > 5 and self.get_id() < 10:
@@ -129,7 +134,7 @@ class Monster(object):
             return
         else:
             self.__id += 10 #对应图片中下一列同一行的digimon,即现在的digimon的进化体
-            self.__max_hp += 1  #最大hp加一
+            self.__max_hp += random.randint(3,5)  #最大hp随机增加
             self.__hp = self.__max_hp   #回满hp
-            self.__max_damage += 1
+            self.__max_damage += random.randint(1,2)
             self.__min_damage += 1
