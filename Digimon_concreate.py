@@ -3,7 +3,7 @@ import json
 from PIL import Image
 
 digimon_tiles_image = Image.open('./digimon_resources/monsters.png')
-with open('./digimon_resources/digimon_db/db.json','r') as db:
+with open('./digimon_resources/digimon_db/db.json','r',encoding='utf-8') as db:
     digimon_db: dict = json.load(db)
 
 num_cols: int = 10
@@ -84,3 +84,5 @@ for i in range(0, 60):
 
 digimon_tiles_image = None  #释放原图片资源
 digimon_db = None
+for digimon in digimons.keys():
+    print(str(digimon) + ': ' + digimons[digimon].get_name_cn() + ' loaded.')

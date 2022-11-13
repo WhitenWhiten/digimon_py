@@ -10,7 +10,7 @@ def read_monster_from_save_files(owner: str, dir: str) -> Monster | None:
     if not os.path.exists(save_path):
         return None
     else:
-        with open(save_path, 'r') as save_file:
+        with open(save_path, 'r',encoding='utf-8') as save_file:
             temp: dict = json.load(save_file)
         return Monster(int(temp['id']), temp['birthday'], temp['nickname'], int(temp['last_fed']),
                        int(temp['last_care']), int(temp['hp']), int(temp['max_hp']),
@@ -30,5 +30,5 @@ def monster_to_dict(monster: Monster) -> dict:
 
 def write_monster_to_save_file(monster: Monster, dir: str) -> None:
     save_path = dir + '/' + monster.get_owner() + '.json'
-    with open(save_path, 'w') as save_file:
+    with open(save_path, 'w',encoding='utf-8') as save_file:
         json.dump(monster_to_dict(monster), save_file)

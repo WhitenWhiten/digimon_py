@@ -1,5 +1,5 @@
 # Monster class Converted from java version
-
+from Digimon_concreate import *
 import arrow
 
 
@@ -33,6 +33,9 @@ class Monster(object):
         self.__losses = losses
         self.__owner = owner
 
+    def get_digimon_concreate(self) -> Digimon:
+        return digimons[self.__id]
+    
     def get_id(self) -> int:
         return self.__id
 
@@ -62,6 +65,9 @@ class Monster(object):
 
     def get_nickname(self) -> str:
         return self.__nickname
+    
+    def set_nickname(self,new_name: str) -> None:
+        self.__nickname = new_name
 
     def get_hp(self) -> int:
         return self.__hp
