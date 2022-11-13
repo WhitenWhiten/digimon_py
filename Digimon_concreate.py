@@ -15,7 +15,7 @@ class Digimon(object):
     __digimon_id: int = 0
     __digimon_name_cn: str = ''
     __digimon_name_en: str = ''
-    __digimon_skills: str = ''
+    __digimon_skills: list = None
     __digimon_tile: Image = None
     __digimon_colorful: Image = None
     __digimon_intro: list = None
