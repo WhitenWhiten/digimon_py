@@ -5,6 +5,7 @@ import random
 
 random.seed()
 
+
 class Monster(object):
     __nickname: str = ''
     __birthday: str = ''
@@ -37,7 +38,7 @@ class Monster(object):
 
     def get_concreate_digimon(self) -> Digimon:
         return digimons[self.__id]
-    
+
     def get_id(self) -> int:
         return self.__id
 
@@ -67,8 +68,8 @@ class Monster(object):
 
     def get_nickname(self) -> str:
         return self.__nickname
-    
-    def set_nickname(self,new_name: str) -> None:
+
+    def set_nickname(self, new_name: str) -> None:
         self.__nickname = new_name
 
     def get_hp(self) -> int:
@@ -111,30 +112,30 @@ class Monster(object):
 
     def defeated(self) -> None:
         self.__losses += 1
-        
+
     def can_fight(self) -> bool:
         return self.get_hp != 0
-        
+
     def can_evolve(self) -> bool:
         if self.get_days_old() > 5 and self.get_id() < 10:
             return True
-        elif self.get_days_old() > 12 and self.get_id() >= 10 and self.get_id() < 20:
+        elif self.get_days_old() > 12 and 10 <= self.get_id() < 20:
             return True
-        elif self.get_days_old() > 19 and self.get_id() >= 20 and self.get_id() < 30 and self.get_wins() >= 5:
+        elif self.get_days_old() > 19 and 20 <= self.get_id() < 30 and self.get_wins() >= 5:
             return True
-        elif self.get_days_old() > 25 and self.get_id() >= 30 and self.get_id() < 40 and self.get_wins() - self.get_losses() >= 15:
+        elif self.get_days_old() > 25 and 30 <= self.get_id() < 40 and self.get_wins() - self.get_losses() >= 15:
             return True
-        elif self.get_days_old() > 40 and self.get_id() >= 40 and self.get_id() < 50 and self.get_wins() - self.get_losses() >= 30:            
+        elif self.get_days_old() > 40 and 40 <= self.get_id() < 50 and self.get_wins() - self.get_losses() >= 30:
             return True
         else:
             return False
-        
+
     def evolve(self) -> None:
         if not self.can_evolve():
             return
         else:
-            self.__id += 10 #对应图片中下一列同一行的digimon,即现在的digimon的进化体
-            self.__max_hp += random.randint(3,5)  #最大hp随机增加
-            self.__hp = self.__max_hp   #回满hp
-            self.__max_damage += random.randint(1,2)
+            self.__id += 10  # 对应图片中下一列同一行的digimon,即现在的digimon的进化体
+            self.__max_hp += random.randint(3, 5)  # 最大hp随机增加
+            self.__hp = self.__max_hp  # 回满hp
+            self.__max_damage += random.randint(1, 2)
             self.__min_damage += 1
