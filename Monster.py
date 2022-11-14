@@ -20,11 +20,11 @@ class Monster(object):
     __min_damage: int = 0
     __owner: str = ''
 
-    def __init__(self, id: int, birthday: str, nickname: str, last_fed_time_stamp: int,
+    def __init__(self, digimon_id: int, birthday: str, nickname: str, last_fed_time_stamp: int,
                  last_care_time_stamp: int, hp: int, max_hp: int, min_damage: int,
                  max_damage: int, wins: int, losses: int, owner: str):
         self.__nickname = nickname
-        self.__id = id
+        self.__id = digimon_id
         self.__birthday = birthday
         self.__last_fed_time_stamp = last_fed_time_stamp
         self.__last_care_time_stamp = last_care_time_stamp

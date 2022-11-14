@@ -19,18 +19,20 @@ def clean_battle_field(b_id: int) -> None:
     in_battle.remove(id2)
 
 
-def get_fighters(b_id):
+def get_fighters(b_id: int):
     battle = battle_fields[b_id]
     return battle[0], battle[1]
 
 
 # 返回战场编号，如果两者在战斗中或者无法战斗或者还没获得数码宝贝则返回-1
 def register_battle(id1: str, id2: str) -> int:
-    if (id1 in in_battle) or (id2 in in_battle):  # in battle
+    if id1 is id2:
+        return -1
+    elif (id1 in in_battle) or (id2 in in_battle):  # in battle
         return -1
     elif (not is_id_registered(id1)) or (not is_id_registered(id2)):  # not registered
         return -1
-    elif (get_Monster_by_id(id1).get_hp() == 0) or (get_Monster_by_id(id2).get_hp() == 0):  # no hp
+    elif (get_Monster_by_gamer_id(id1).get_hp() == 0) or (get_Monster_by_gamer_id(id2).get_hp() == 0):  # no hp
         return -1
     else:
         in_battle.add(id1)
@@ -40,8 +42,8 @@ def register_battle(id1: str, id2: str) -> int:
 
 def generate_process(b_id: int) -> str:
     id1, id2 = get_fighters(b_id)
-    mon1 = get_Monster_by_id(id1)
-    mon2 = get_Monster_by_id(id2)
+    mon1 = get_Monster_by_gamer_id(id1)
+    mon2 = get_Monster_by_gamer_id(id2)
     nickname1 = mon1.get_nickname()
     nickname2 = mon2.get_nickname()
     digimon_name1 = nickname1 if nickname1 != '' else mon1.get_concreate_digimon().get_name_cn()

@@ -40,7 +40,7 @@ def read_gamers() -> dict | None:
 gamers: dict = read_gamers()
 
 
-def get_Monster_by_id(gamer_id: str) -> Monster:
+def get_Monster_by_gamer_id(gamer_id: str) -> Monster:
     lock.acquire()
     ret = gamers[gamer_id]
     lock.release()
@@ -86,7 +86,7 @@ def random_monster(monster_owner: str) -> Monster:
     random_id = random.randint(0, 9)
     random_max_hp = random.randint(9, 12)
     random_max_dmg = random.randint(3, 5)
-    return Monster(id=random_id, birthday=str(now), nickname='',
+    return Monster(digimon_id=random_id, birthday=str(now), nickname='',
                    last_care_time_stamp=int(now.timestamp()), last_fed_time_stamp=int(now.timestamp()),
                    hp=random_max_hp, max_hp=random_max_hp, max_damage=random_max_dmg,
                    min_damage=random_max_dmg - 3, wins=0, losses=0, owner=monster_owner)
