@@ -4,7 +4,7 @@ from PIL import Image
 
 digimon_tiles_image = Image.open('./digimon_resources/monsters.png')
 with open('./digimon_resources/digimon_db/db.json', 'r', encoding='utf-8') as db:
-    digimon_db: dict | None = json.load(db)
+    digimon_db = json.load(db)
 
 num_cols: int = 10
 num_rows: int = 6
@@ -18,7 +18,7 @@ class Digimon(object):
     __digimon_name_en: str = ''
     __digimon_skills: list = None
     __digimon_tile: Image = None
-    __digimon_colorful: Image = None
+    __digimon_colorful: str = ''
     __digimon_intro: list = None
     __digimon_level: str = ''
     __digimon_attribute: str = ''
@@ -32,9 +32,6 @@ class Digimon(object):
         box = (col * tile_width, row * tile_height, (col + 1) * tile_width, (row + 1) * tile_height)
         self.__digimon_tile = digimon_tiles_image.crop(box)
 
-    def load_colorful(self) -> None:
-        self.__digimon_colorful = Image.open(f'./digimon_resources/digimon_db/{self.get_name_en()}.jpg')
-
     def __init__(self, gamer_id: int):
         map_val = digimon_db[str(gamer_id)]
         self.__digimon_id = gamer_id
@@ -46,7 +43,7 @@ class Digimon(object):
         self.__digimon_attribute = map_val['attribute']
         self.__digimon_type = map_val['digimon_type']
         self.__digimon_first_take = map_val['first_take']
-        self.load_colorful()
+        self.__digimon_colorful = f'./digimon_resources/digimon_db/{self.__digimon_name_en}.jpg'
         self.load_tile()
 
     def get_first_take(self) -> str:
@@ -67,13 +64,19 @@ class Digimon(object):
     def get_skills(self) -> list:
         return self.__digimon_skills
 
+    def get_skills_str(self) -> str:
+        ret = ''
+        for i in self.__digimon_skills:
+            ret += i + '\n'
+        return ret[:-1]
+
     def get_name_cn(self) -> str:
         return self.__digimon_name_cn
 
     def get_name_en(self) -> str:
         return self.__digimon_name_en
 
-    def get_colorful(self) -> Image:
+    def get_colorful_path(self) -> str:
         return self.__digimon_colorful
 
     def get_intro(self) -> list:

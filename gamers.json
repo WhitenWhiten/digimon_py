@@ -1,14 +1,14 @@
 {
     "1368846568": {
-        "id": 1,
+        "id": 59,
         "birthday": "2022-11-13T06:02:50.916354+00:00",
         "nickname": "",
         "last_fed": 1668319370,
         "last_care": 1668319370,
-        "hp": 11,
-        "max_hp": 11,
-        "min_dmg": 0,
-        "max_dmg": 3,
+        "hp": 100,
+        "max_hp": 100,
+        "min_dmg": 25,
+        "max_dmg": 30,
         "wins": 0,
         "losses": 0,
         "owner": "1368846568"

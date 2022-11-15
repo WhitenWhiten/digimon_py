@@ -1,4 +1,4 @@
-from Monster import *
+from .Monster import *
 import json
 import os
 import random
@@ -16,7 +16,7 @@ random.seed()
 save_path = './gamers.json'
 
 
-def read_gamers() -> dict | None:
+def read_gamers():
     if not os.path.exists(save_path):
         return None
     else:
@@ -74,8 +74,11 @@ def monster_to_dict(monster: Monster) -> dict:
 def save_gamers() -> None:
     lock.acquire()
     to_save = {}
-    for gamer in gamers.keys():
-        to_save[gamer] = monster_to_dict(gamers[gamer])
+    for gamer in gamers.keys() :
+        if gamers[gamer] is None:
+            continue
+        else:
+            to_save[gamer] = monster_to_dict(gamers[gamer])
     lock.release()
     with open(save_path, 'w', encoding='utf-8') as save_file:
         json.dump(to_save, save_file, indent=4, separators=(',', ': '), ensure_ascii=False)
@@ -85,20 +88,32 @@ def random_monster(monster_owner: str) -> Monster:
     now = arrow.utcnow()
     random_id = random.randint(0, 9)
     random_max_hp = random.randint(9, 12)
-    random_max_dmg = random.randint(3, 5)
+    random_max_dmg = random.randint(4, 5)
     return Monster(digimon_id=random_id, birthday=str(now), nickname='',
                    last_care_time_stamp=int(now.timestamp()), last_fed_time_stamp=int(now.timestamp()),
                    hp=random_max_hp, max_hp=random_max_hp, max_damage=random_max_dmg,
-                   min_damage=random_max_dmg - 3, wins=0, losses=0, owner=monster_owner)
+                   min_damage=random_max_dmg - 2, wins=0, losses=0, owner=monster_owner)
 
 
 # if the gamer has existed, return false
 def add_gamer(gamer_id: str) -> bool:
     lock.acquire()
-    if not (gamers.get(gamer_id) is None):
+    if is_gamer(gamer_id):
         lock.release()
         return False
     else:
         gamers[gamer_id] = random_monster(gamer_id)
         lock.release()
+        save_gamers()
         return True
+
+# 如果已经存在这一玩家，则返回False
+def is_gamer(gamer_id: str) -> bool:
+    return not (gamers.get(gamer_id) is None)
+
+
+def remake(gamer_id: str):
+    lock.acquire()
+    gamers[gamer_id] = None
+    lock.release()
+    save_gamers()

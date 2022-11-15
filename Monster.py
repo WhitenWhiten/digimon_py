@@ -1,5 +1,5 @@
 # Monster class Converted from java version
-from Digimon_concreate import *
+from .Digimon_concreate import *
 import arrow
 import random
 
@@ -63,9 +63,6 @@ class Monster(object):
         diff = self.get_last_care_time_stamp() - arrow.utcnow().timestamp()
         return int(diff / (1000 * 60 * 60))
 
-    def is_egg(self) -> bool:
-        return True if self.get_days_old() == 0 else False
-
     def get_nickname(self) -> str:
         return self.__nickname
 
@@ -116,26 +113,38 @@ class Monster(object):
     def can_fight(self) -> bool:
         return self.get_hp != 0
 
+    def get_exp(self) -> float:
+        return float(self.__wins) + 0.5 * float(self.__losses)
+
     def can_evolve(self) -> bool:
-        if self.get_days_old() > 5 and self.get_id() < 10:
+        if self.get_exp() > 8.0 and self.get_id() < 10:
             return True
-        elif self.get_days_old() > 12 and 10 <= self.get_id() < 20:
+        elif self.get_exp() > 15.0 and 10 <= self.get_id() < 20:
             return True
-        elif self.get_days_old() > 19 and 20 <= self.get_id() < 30 and self.get_wins() >= 5:
+        elif self.get_exp() > 27.0 and 20 <= self.get_id() < 30:
             return True
-        elif self.get_days_old() > 25 and 30 <= self.get_id() < 40 and self.get_wins() - self.get_losses() >= 15:
+        elif self.get_exp() > 35.0 and 30 <= self.get_id() < 40:
             return True
-        elif self.get_days_old() > 40 and 40 <= self.get_id() < 50 and self.get_wins() - self.get_losses() >= 30:
+        elif self.get_exp() > 50.0 and 40 <= self.get_id() < 50:
             return True
         else:
             return False
 
-    def evolve(self) -> None:
+    #成功进化则返回True
+    def evolve(self) -> bool:
         if not self.can_evolve():
-            return
+            return False
         else:
             self.__id += 10  # 对应图片中下一列同一行的digimon,即现在的digimon的进化体
             self.__max_hp += random.randint(3, 5)  # 最大hp随机增加
             self.__hp = self.__max_hp  # 回满hp
             self.__max_damage += random.randint(1, 2)
             self.__min_damage += 1
+            return True
+
+    def get_concreate_name(self) -> str:
+        return self.get_concreate_digimon().get_name_cn()
+
+    def get_info(self) -> str:
+        c_digimon = self.get_concreate_digimon()
+        return f'Digimon: {self.get_concreate_name()}\n等级:{c_digimon.get_level()}\n昵称：{self.get_nickname()}\n初次登场:{c_digimon.get_first_take()}\n技能:{c_digimon.get_skills_str()}\n信息:{c_digimon.get_intro()[0]}'

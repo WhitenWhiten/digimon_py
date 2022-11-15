@@ -1,4 +1,4 @@
-from Gamers import *
+from .Gamers import *
 
 in_battle: set = set()
 battle_fields: dict = {}
@@ -83,7 +83,9 @@ def generate_process(b_id: int) -> str:
     loser.defeated()  # 更新败者战败数
     winner.update_hp(eval('hp' + str(actor))[0])  # 胜者血量即为战斗结束后的血量
     loser.update_hp(0)  # 败者血量可能为负，此时将其更新为0即可
-    winner.evolve()  # 胜利者尝试进化
-    loser.evolve()  # 败者尝试进化
+    win_evolve_or_not = winner.evolve()  # 胜利者尝试进化
+    lose_evolve_or_not = loser.evolve()  # 败者尝试进化
+    process += f'\n{winner_name}进化了！' if win_evolve_or_not else ''
+    process += f'\n{loser_name}进化了！' if lose_evolve_or_not else ''
     clean_battle_field(b_id)
     return process
