@@ -74,7 +74,7 @@ def monster_to_dict(monster: Monster) -> dict:
 def save_gamers() -> None:
     lock.acquire()
     to_save = {}
-    for gamer in gamers.keys() :
+    for gamer in gamers.keys():
         if gamers[gamer] is None:
             continue
         else:
@@ -106,6 +106,7 @@ def add_gamer(gamer_id: str) -> bool:
         lock.release()
         save_gamers()
         return True
+
 
 # 如果已经存在这一玩家，则返回False
 def is_gamer(gamer_id: str) -> bool:

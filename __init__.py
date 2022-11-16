@@ -1,12 +1,11 @@
 from nonebot import get_driver
 from nonebot import on_command
-from nonebot.matcher import Matcher
-from nonebot.plugin import PluginMetadata
 from nonebot.adapters.onebot.v11 import Message, MessageEvent, MessageSegment
-from nonebot.params import CommandArg, Arg, ArgPlainText
-from .config import Config
-from .Gamers import *
+from nonebot.matcher import Matcher
+from nonebot.params import CommandArg
+
 from .Battle import *
+from .config import Config
 
 global_config = get_driver().config
 config = Config.parse_obj(global_config)
@@ -83,7 +82,8 @@ async def _(event: MessageEvent, matcher=Matcher, msg: Message = CommandArg()):
             if not is_gamer(user_id):
                 reply = '请先孵蛋'
             else:
-                await matcher.finish(MessageSegment.image(get_Monster_by_gamer_id(user_id).get_concreate_digimon().get_colorful_path()),at_sender=True)
+                pic_path = get_Monster_by_gamer_id(user_id).get_concreate_digimon().get_colorful_path()
+                await matcher.finish(MessageSegment.image(pic_path), at_sender=True)
         elif command == 'remake' or command == '重开':
             remake(user_id)
             reply = '重开成功,去孵蛋吧~'
@@ -106,10 +106,10 @@ async def nick_handler(event: MessageEvent, msg: Message = CommandArg(), matcher
             get_Monster_by_gamer_id(user_id).set_nickname(plain_text)
             await matcher.finish(f'现在你的数码宝贝的昵称是{plain_text}', at_sender=True)
         else:
-            await matcher.finish('请给出正确的昵称',at_sender=True)
+            await matcher.finish('请给出正确的昵称', at_sender=True)
 
 
-digimon_battle = on_command('battle-with', aliases={'与敌对峙','数码对战'}, priority=15)
+digimon_battle = on_command('battle-with', aliases={'与敌对峙', '数码对战'}, priority=15)
 
 
 @digimon_battle.handle()

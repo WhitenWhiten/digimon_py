@@ -66,8 +66,8 @@ class Digimon(object):
 
     def get_skills_str(self) -> str:
         ret = ''
-        for i in self.__digimon_skills:
-            ret += i + '\n'
+        for skill in self.__digimon_skills:
+            ret += skill + '\n'
         return ret[:-1]
 
     def get_name_cn(self) -> str:

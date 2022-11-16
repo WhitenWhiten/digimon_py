@@ -130,7 +130,7 @@ class Monster(object):
         else:
             return False
 
-    #成功进化则返回True
+    # 成功进化则返回True
     def evolve(self) -> bool:
         if not self.can_evolve():
             return False
@@ -147,4 +147,6 @@ class Monster(object):
 
     def get_info(self) -> str:
         c_digimon = self.get_concreate_digimon()
-        return f'Digimon: {self.get_concreate_name()}\n等级:{c_digimon.get_level()}\n昵称：{self.get_nickname()}\n初次登场:{c_digimon.get_first_take()}\n技能:{c_digimon.get_skills_str()}\n信息:{c_digimon.get_intro()[0]}'
+        ret = f'Digimon: {self.get_concreate_name()}\n等级:{c_digimon.get_level()}\n昵称：{self.get_nickname()}\n'
+        ret += f'初次登场:{c_digimon.get_first_take()}\n技能:{c_digimon.get_skills_str()}\n信息:{c_digimon.get_intro()[0]}'
+        return ret
