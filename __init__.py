@@ -52,7 +52,9 @@ def info(gamer_id: str) -> str:
 alias = {'数码宝贝'}
 digimon = on_command(cmd='digimon', aliases=alias, priority=15)
 
-help_msg = '暂时懒得写，反正有孵蛋、照顾、喂食、查看昵称、修改昵称、信息这些功能，战斗还没写'
+help_msg = 'digimon hatch:孵蛋\ndigimon info:查看信息\ndigimon feed:喂食物回血\ndigimon remake:重开\n'
+help_msg += '修改昵称 x：将你的数码宝贝的昵称修改为x\n与敌对峙 or battle-with+@某人:与某人对战\n'
+hemp_msg += '比如：与敌对峙@群主,一定是at而不是复制的文字才可以'
 
 
 @digimon.handle()
