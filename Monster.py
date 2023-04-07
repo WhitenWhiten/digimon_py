@@ -7,19 +7,6 @@ random.seed()
 
 
 class Monster(object):
-    __nickname: str = ''
-    __birthday: str = ''
-    __last_fed_time_stamp: int = 0
-    __last_care_time_stamp: int = 0
-    __wins: int = 0
-    __losses: int = 0
-    __id: int = 0
-    __hp: int = 0
-    __max_hp: int = 0
-    __max_damage: int = 0
-    __min_damage: int = 0
-    __owner: str = ''
-
     def __init__(self, digimon_id: int, birthday: str, nickname: str, last_fed_time_stamp: int,
                  last_care_time_stamp: int, hp: int, max_hp: int, min_damage: int,
                  max_damage: int, wins: int, losses: int, owner: str):

@@ -13,18 +13,6 @@ tile_height: int = int(384 / num_rows)
 
 
 class Digimon(object):
-    __digimon_id: int = 0
-    __digimon_name_cn: str = ''
-    __digimon_name_en: str = ''
-    __digimon_skills: list = None
-    __digimon_tile: Image = None
-    __digimon_colorful: str = ''
-    __digimon_intro: list = None
-    __digimon_level: str = ''
-    __digimon_attribute: str = ''
-    __digimon_type: str = ''
-    __digimon_first_take: str = ''
-
     # the tile is tile_width * tile_height sized
     def load_tile(self) -> None:
         col: int = self.__digimon_id % num_cols
